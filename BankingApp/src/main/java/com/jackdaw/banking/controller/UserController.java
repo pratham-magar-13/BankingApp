@@ -6,18 +6,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jackdaw.banking.dto.BankResponse;
+import com.jackdaw.banking.dto.CreditDebitRequest;
 import com.jackdaw.banking.dto.EnquiryRequest;
 import com.jackdaw.banking.dto.UserRequest;
 import com.jackdaw.banking.services.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
 
-	public final UserService userService;
+    public final UserService userService;
 	
 	public UserController(UserService userService)
 	{
@@ -37,5 +37,15 @@ public class UserController {
 	public String nameEnquiry(@RequestBody EnquiryRequest request)
 	{
 		return userService.nameEnquiry(request);
+	}
+	@PostMapping("credit")
+	public BankResponse creditAccount(@RequestBody CreditDebitRequest request)
+	{
+		return userService.creditAccount(request);
+	}
+	@PostMapping("debit")
+	public BankResponse debitAccount(@RequestBody CreditDebitRequest request)
+	{
+		return userService.debitAccount(request);
 	}
 }

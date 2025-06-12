@@ -1,6 +1,5 @@
 package com.jackdaw.banking.entity;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -36,7 +35,7 @@ public class User {
 	private String address;
 	private String stateOfOrigin;
 	private String accountNumber;
-	private BigDecimal accountBalance;
+	private int accountBalance;
 	private String email;
 	private String phoneNumber;
 	private String alternatibePhoneNumber;

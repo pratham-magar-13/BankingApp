@@ -17,6 +17,12 @@ public class AccountUtils {
 	public static final String ACCOUNT_FOUND_CODE_STRING="004";
 	public static final String ACCOUNT_FOUND_MESSAGE_STRING="User Account Found";
 	
+	public static final String ACCOUNT_CREDITED_SUCCESS_STRING="005";
+	public static final String ACCOUNT_CREDITED_SUCCESS_MESSAGE_STRING="User Account Credited Successfully";
+	
+	public static final String ACCOUNT_DEBITED_SUCCESS_STRING="006";
+	public static final String ACCOUNT_DEBITED_SUCCESS_MESSAGE_STRING="User Account Debited Successfully";
+	
 	public static String genericAccountNumber()
 	{
 		//beginnning with 2025 + randomsixdigits
