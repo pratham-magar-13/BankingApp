@@ -3,9 +3,10 @@ package com.jackdaw.banking.services;
 import java.math.BigDecimal;
 
 import org.springframework.stereotype.Service;
-
+import com.jackdaw.banking.controller.UserController;
 import com.jackdaw.banking.dto.AccountInfo;
 import com.jackdaw.banking.dto.BankResponse;
+import com.jackdaw.banking.dto.EnquiryRequest;
 import com.jackdaw.banking.dto.UserRequest;
 import com.jackdaw.banking.entity.User;
 import com.jackdaw.banking.repository.UserRepository;
@@ -62,6 +63,42 @@ public class UserServiceImpl implements UserService{
 						.accountName(savedUser.getFirstName() + " " + savedUser.getLastName() + " " + savedUser.getOtherName())
 						.build())
 				.build();
+	}
+	@Override
+	public BankResponse balanceEnquiry(EnquiryRequest request) {
+		// check if the provided account number exists in the db
+		boolean isAccountExist=userRepository.existsByAccountNumber(request.getAccountNumber());
+		if(!isAccountExist)
+		{
+			return BankResponse.builder()
+					.responseCode(AccountUtils.ACCOUNT_NOT_EXIST_CODE)
+					.responseMessage(AccountUtils.ACCOUNT_NOT_EXIST_MESSAGE)
+					.accountInfo(null)
+					.build();
+		}
+		
+		User foundUser=userRepository.findByAccountNumber(request.getAccountNumber());
+		return BankResponse.builder()
+				.responseCode(AccountUtils.ACCOUNT_FOUND_CODE_STRING)
+				.responseMessage(AccountUtils.ACCOUNT_FOUND_MESSAGE_STRING)
+				.accountInfo(AccountInfo.builder()
+						.accountBalance(foundUser.getAccountBalance())
+						.accountNumber(foundUser.getAccountNumber())
+						.accountName(foundUser.getFirstName() + " "+ foundUser.getLastName())
+						.build())
+				.build();
+	}
+	@Override
+	public String nameEnquiry(EnquiryRequest request) {
+		
+		boolean isAccountExist=userRepository.existsByAccountNumber(request.getAccountNumber());
+		if(!isAccountExist)
+		{
+			return AccountUtils.ACCOUNT_NOT_EXIST_MESSAGE;
+		}
+		User foundUser=userRepository.findByAccountNumber(request.getAccountNumber());
+		return foundUser.getFirstName()+ " " + foundUser.getLastName();
+		
 	}
 
 }
