@@ -23,6 +23,11 @@ public class AccountUtils {
 	public static final String ACCOUNT_DEBITED_SUCCESS_STRING="006";
 	public static final String ACCOUNT_DEBITED_SUCCESS_MESSAGE_STRING="User Account Debited Successfully";
 	
+	public static final String INSUFFICIENT_BALANCE_CODE_STRING="007";
+	public static final String INSUFFICIENT_BALANCE_MESSAGE_STRING="Insufficient Balance in the account to debit";
+	
+	public static final String TRANSFER_SUCCESS_CODE_STRING="008";
+	public static final String TRANSFER_SUCCESS_MESSAGE_STRING="Funds Transferred.";
 	public static String genericAccountNumber()
 	{
 		//beginnning with 2025 + randomsixdigits

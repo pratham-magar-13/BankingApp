@@ -8,8 +8,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.jackdaw.banking.dto.BankResponse;
 import com.jackdaw.banking.dto.CreditDebitRequest;
 import com.jackdaw.banking.dto.EnquiryRequest;
+import com.jackdaw.banking.dto.TransferRequest;
 import com.jackdaw.banking.dto.UserRequest;
+import com.jackdaw.banking.entity.User;
 import com.jackdaw.banking.services.UserService;
+
+import java.util.List;
+
 import org.springframework.web.bind.annotation.GetMapping;
 
 
@@ -47,5 +52,15 @@ public class UserController {
 	public BankResponse debitAccount(@RequestBody CreditDebitRequest request)
 	{
 		return userService.debitAccount(request);
+	}
+	@GetMapping("allusers")
+	public List<User> getAllUsers()
+	{
+		return userService.getAllUsers();
+	}
+	@PostMapping("transferFunds")
+	public BankResponse transferFunds(@RequestBody TransferRequest request)
+	{
+		return userService.transfer(request);
 	}
 }
